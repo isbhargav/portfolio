@@ -16,3 +16,16 @@ See [Writing Blog Posts With Jupyter](https://github.com/fastai/fastpages#writin
 ## Notebook Blog
 1. put notebook with output in _notebook
 2. push the changes to master and let GH actions create the blog
+
+
+```py
+# "Matplotlib Guide - p2"
+> "Plotting data with matplotlib. Different types of Charts"
+
+- author: Bhargav Lad
+- toc: true 
+- badges: true
+- comments: true
+- image: images/mplib2.png
+- categories: [ jupyter,matplotlib]
+```
