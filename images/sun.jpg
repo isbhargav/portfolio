@@ -1,0 +1,16 @@
+--2021-03-04 12:50:48--  https://vision.princeton.edu/projects/2010/SUN/sun_mosaic_logo.jpg
+Resolving vision.princeton.edu (vision.princeton.edu)... 128.112.136.61
+Connecting to vision.princeton.edu (vision.princeton.edu)|128.112.136.61|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 270354 (264K) [image/jpeg]
+Saving to: ‘sun_mosaic_logo.jpg’
+
+     0K .......... .......... .......... .......... .......... 18%  638K 0s
+    50K .......... .......... .......... .......... .......... 37% 1.37M 0s
+   100K .......... .......... .......... .......... .......... 56% 3.64M 0s
+   150K .......... .......... .......... .......... .......... 75% 1.22M 0s
+   200K .......... .......... .......... .......... .......... 94% 7.50M 0s
+   250K .......... ....                                       100%  930K=0.2s
+
+2021-03-04 12:50:49 (1.36 MB/s) - ‘sun_mosaic_logo.jpg’ saved [270354/270354]
+
