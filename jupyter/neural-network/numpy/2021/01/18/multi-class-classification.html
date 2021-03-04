@@ -4,19 +4,21 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Multi Class classification | AI Portforlio</title>
+<title>Neural Network from Scratch using Numpy | AI Portforlio</title>
 <meta name="generator" content="Jekyll v4.1.1" />
-<meta property="og:title" content="Multi Class classification" />
+<meta property="og:title" content="Neural Network from Scratch using Numpy" />
+<meta name="author" content="Bhargav Lad" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Portfolio Website" />
-<meta property="og:description" content="Portfolio Website" />
-<link rel="canonical" href="https://isbhargav.github.io/portfolio/2021/03/03/multi-class-classification.html" />
-<meta property="og:url" content="https://isbhargav.github.io/portfolio/2021/03/03/multi-class-classification.html" />
+<meta name="description" content="We will replicate pytorch functionalities using only Numpy" />
+<meta property="og:description" content="We will replicate pytorch functionalities using only Numpy" />
+<link rel="canonical" href="https://isbhargav.github.io/portfolio/jupyter/neural-network/numpy/2021/01/18/multi-class-classification.html" />
+<meta property="og:url" content="https://isbhargav.github.io/portfolio/jupyter/neural-network/numpy/2021/01/18/multi-class-classification.html" />
 <meta property="og:site_name" content="AI Portforlio" />
+<meta property="og:image" content="https://isbhargav.github.io/portfolio/images/nn_numpy.gif" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-03-03T00:00:00-06:00" />
+<meta property="article:published_time" content="2021-01-18T00:00:00-06:00" />
 <script type="application/ld+json">
-{"description":"Portfolio Website","url":"https://isbhargav.github.io/portfolio/2021/03/03/multi-class-classification.html","@type":"BlogPosting","headline":"Multi Class classification","dateModified":"2021-03-03T00:00:00-06:00","datePublished":"2021-03-03T00:00:00-06:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://isbhargav.github.io/portfolio/2021/03/03/multi-class-classification.html"},"@context":"https://schema.org"}</script>
+{"description":"We will replicate pytorch functionalities using only Numpy","url":"https://isbhargav.github.io/portfolio/jupyter/neural-network/numpy/2021/01/18/multi-class-classification.html","@type":"BlogPosting","headline":"Neural Network from Scratch using Numpy","dateModified":"2021-01-18T00:00:00-06:00","datePublished":"2021-01-18T00:00:00-06:00","author":{"@type":"Person","name":"Bhargav Lad"},"image":"https://isbhargav.github.io/portfolio/images/nn_numpy.gif","mainEntityOfPage":{"@type":"WebPage","@id":"https://isbhargav.github.io/portfolio/jupyter/neural-network/numpy/2021/01/18/multi-class-classification.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/portfolio/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://isbhargav.github.io/portfolio/feed.xml" title="AI Portforlio" /><link rel="shortcut icon" type="image/x-icon" href="/portfolio/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
@@ -87,9 +89,11 @@ window.onload = wrap_img;
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Multi Class classification</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-03-03T00:00:00-06:00" itemprop="datePublished">
-        Mar 3, 2021
-      </time>
+    <h1 class="post-title p-name" itemprop="name headline">Neural Network from Scratch using Numpy</h1><p class="page-description">We will replicate pytorch functionalities using only Numpy</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-01-18T00:00:00-06:00" itemprop="datePublished">
+        Jan 18, 2021
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Bhargav Lad</span></span>
        • <span class="read-time" title="Estimated read time">
     
     
@@ -98,25 +102,38 @@ window.onload = wrap_img;
 </span></p>
 
     
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/portfolio/categories/#jupyter">jupyter</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/portfolio/categories/#neural-network">neural-network</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/portfolio/categories/#numpy">numpy</a>
+        
+      
+      </p>
+    
 
     
       
         <div class="pb-5 d-flex flex-wrap flex-justify-end">
           <div class="px-2">
 
-    <a href="https://github.com/isbhargav/portfolio/tree/master/_notebooks/multi-class classification.ipynb" role="button" target="_blank">
+    <a href="https://github.com/isbhargav/portfolio/tree/master/_notebooks/2021-01-18-multi-class-classification.ipynb" role="button" target="_blank">
 <img class="notebook-badge-image" src="/portfolio/assets/badges/github.svg" alt="View On GitHub">
     </a>
 </div>
 
           <div class="px-2">
-    <a href="https://mybinder.org/v2/gh/isbhargav/portfolio/master?filepath=_notebooks%2Fmulti-class+classification.ipynb" target="_blank">
+    <a href="https://mybinder.org/v2/gh/isbhargav/portfolio/master?filepath=_notebooks%2F2021-01-18-multi-class-classification.ipynb" target="_blank">
         <img class="notebook-badge-image" src="/portfolio/assets/badges/binder.svg" alt="Open In Binder"/>
     </a>
 </div>
 
           <div class="px-2">
-    <a href="https://colab.research.google.com/github/isbhargav/portfolio/blob/master/_notebooks/multi-class classification.ipynb" target="_blank">
+    <a href="https://colab.research.google.com/github/isbhargav/portfolio/blob/master/_notebooks/2021-01-18-multi-class-classification.ipynb" target="_blank">
         <img class="notebook-badge-image" src="/portfolio/assets/badges/colab.svg" alt="Open In Colab"/>
     </a>
 </div>
@@ -124,15 +141,55 @@ window.onload = wrap_img;
       </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <!--
+    <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#Multi-Class-classification">Multi Class classification </a></li>
+<li class="toc-entry toc-h1"><a href="#Libraries-used">Libraries used </a></li>
+<li class="toc-entry toc-h1"><a href="#Loading-dataset">Loading dataset </a></li>
+<li class="toc-entry toc-h1"><a href="#Train-Test-split">Train Test split </a></li>
+<li class="toc-entry toc-h1"><a href="#Neural-Network--Layers">Neural Network  Layers </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#Linear-Layer">Linear Layer </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#Relu-Activation">Relu Activation </a></li>
+<li class="toc-entry toc-h1"><a href="#Loss-function">Loss function </a></li>
+<li class="toc-entry toc-h1"><a href="#Model-Class">Model Class </a></li>
+<li class="toc-entry toc-h1"><a href="#Score-function/metric">Score function/metric </a></li>
+<li class="toc-entry toc-h1"><a href="#Training-Loop">Training Loop </a></li>
+<li class="toc-entry toc-h1"><a href="#Evaluation-on-test-set">Evaluation on test set </a></li>
+</ul><!--
 #################################################
 ### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
 #################################################
-# file to edit: _notebooks/multi-class classification.ipynb
+# file to edit: _notebooks/2021-01-18-multi-class-classification.ipynb
 -->
 
 <div class="container" id="notebook-container">
         
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Multi-Class-classification">
+<a class="anchor" href="#Multi-Class-classification" aria-hidden="true"><span class="octicon octicon-link"></span></a>Multi Class classification<a class="anchor-link" href="#Multi-Class-classification"> </a>
+</h1>
+<p><strong>Dataset</strong></p>
+<p>The data set contains 3 classes of 50 instances each, where each class refers to a type of iris plant. One class is linearly separable from the other 2; the latter are NOT linearly separable from each other.</p>
+<p><strong>Attribute Information:</strong></p>
+<ol>
+<li>sepal length in cm</li>
+<li>sepal width in cm</li>
+<li>petal length in cm</li>
+<li>petal width in cm</li>
+<li>class:
+<pre><code>1. Iris Setosa
+2. Iris Versicolour
+3. Iris Virginica</code></pre>
+</li>
+</ol>
+
+</div>
+</div>
+</div>
     
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -153,20 +210,31 @@ window.onload = wrap_img;
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Libraries-used">Libraries used<a class="anchor-link" href="#Libraries-used"> </a></h1><ul>
-<li><code>sklearn.datasets.load_iris</code>: To load iris dataset. Iris dataset comes built into Sklearn</li>
-<li><code>sklearn.model_selection.train_test_split</code> : To split the data into train and test set</li>
-<li><code>numpy</code>: Use numpy arrays to create neural network layers</li>
+<h1 id="Libraries-used">
+<a class="anchor" href="#Libraries-used" aria-hidden="true"><span class="octicon octicon-link"></span></a>Libraries used<a class="anchor-link" href="#Libraries-used"> </a>
+</h1>
+<ul>
+<li>
+<code>sklearn.datasets.load_iris</code>: To load iris dataset. Iris dataset comes built into Sklearn</li>
+<li>
+<code>sklearn.model_selection.train_test_split</code> : To split the data into train and test set</li>
+<li>
+<code>numpy</code>: Use numpy arrays to create neural network layers</li>
 </ul>
 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Loading-dataset">Loading dataset<a class="anchor-link" href="#Loading-dataset"> </a></h1><p>we will load Iris dataset from sklearn's built in dataset</p>
+<h1 id="Loading-dataset">
+<a class="anchor" href="#Loading-dataset" aria-hidden="true"><span class="octicon octicon-link"></span></a>Loading dataset<a class="anchor-link" href="#Loading-dataset"> </a>
+</h1>
+<p>we will load Iris dataset from sklearn's built in dataset</p>
 
 </div>
 </div>
@@ -215,9 +283,13 @@ window.onload = wrap_img;
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Train-Test-split">Train Test split<a class="anchor-link" href="#Train-Test-split"> </a></h1><p>We will split the data into 70:30 ratio where we will use 70% of data for training our model and rest 30% for evaluating our model afterwards</p>
+<h1 id="Train-Test-split">
+<a class="anchor" href="#Train-Test-split" aria-hidden="true"><span class="octicon octicon-link"></span></a>Train Test split<a class="anchor-link" href="#Train-Test-split"> </a>
+</h1>
+<p>We will split the data into 70:30 ratio where we will use 70% of data for training our model and rest 30% for evaluating our model afterwards</p>
 
 </div>
 </div>
@@ -239,10 +311,17 @@ window.onload = wrap_img;
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Neural-Network--Layers">Neural Network  Layers<a class="anchor-link" href="#Neural-Network--Layers"> </a></h1><p>We define the layers which are required by our model. Each layer has a forward pass and backward pass.In forward pass we will compute the output of the network given the input data and in the backward pass we will compute the gradient for the layer with respect to loss.</p>
-<h2 id="Linear-Layer">Linear Layer<a class="anchor-link" href="#Linear-Layer"> </a></h2><p><strong>Forward Pass</strong>
+<h1 id="Neural-Network--Layers">
+<a class="anchor" href="#Neural-Network--Layers" aria-hidden="true"><span class="octicon octicon-link"></span></a>Neural Network  Layers<a class="anchor-link" href="#Neural-Network--Layers"> </a>
+</h1>
+<p>We define the layers which are required by our model. Each layer has a forward pass and backward pass.In forward pass we will compute the output of the network given the input data and in the backward pass we will compute the gradient for the layer with respect to loss.</p>
+<h2 id="Linear-Layer">
+<a class="anchor" href="#Linear-Layer" aria-hidden="true"><span class="octicon octicon-link"></span></a>Linear Layer<a class="anchor-link" href="#Linear-Layer"> </a>
+</h2>
+<p><strong>Forward Pass</strong>
 $$
 L=X.W^{T}+b_{1}
 $$</p>
@@ -272,37 +351,37 @@ $$</p>
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Linear</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">in_features</span><span class="p">,</span><span class="n">out_features</span><span class="p">,</span><span class="n">bias</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">weight</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;value&quot;</span><span class="p">:</span><span class="kc">None</span><span class="p">,</span><span class="s2">&quot;grad&quot;</span><span class="p">:</span><span class="kc">None</span><span class="p">}</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">bias</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;value&quot;</span><span class="p">:</span><span class="kc">None</span><span class="p">,</span><span class="s2">&quot;grad&quot;</span><span class="p">:</span><span class="kc">None</span><span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">weight</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"value"</span><span class="p">:</span><span class="kc">None</span><span class="p">,</span><span class="s2">"grad"</span><span class="p">:</span><span class="kc">None</span><span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bias</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"value"</span><span class="p">:</span><span class="kc">None</span><span class="p">,</span><span class="s2">"grad"</span><span class="p">:</span><span class="kc">None</span><span class="p">}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">inp</span> <span class="o">=</span> <span class="kc">None</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,(</span><span class="n">out_features</span><span class="p">,</span><span class="n">in_features</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">[</span><span class="s2">&quot;grad&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,(</span><span class="n">out_features</span><span class="p">,</span><span class="n">in_features</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">[</span><span class="s2">"value"</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,(</span><span class="n">out_features</span><span class="p">,</span><span class="n">in_features</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">[</span><span class="s2">"grad"</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,(</span><span class="n">out_features</span><span class="p">,</span><span class="n">in_features</span><span class="p">))</span>
 
         <span class="k">if</span> <span class="n">bias</span><span class="o">==</span><span class="kc">True</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">bias</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,(</span><span class="n">out_features</span><span class="p">))</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">bias</span><span class="p">[</span><span class="s2">&quot;grad&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,(</span><span class="n">out_features</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bias</span><span class="p">[</span><span class="s2">"value"</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,(</span><span class="n">out_features</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bias</span><span class="p">[</span><span class="s2">"grad"</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,(</span><span class="n">out_features</span><span class="p">))</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">bias</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">out_features</span><span class="p">))</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">bias</span><span class="p">[</span><span class="s2">&quot;grad&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">out_features</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bias</span><span class="p">[</span><span class="s2">"value"</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">out_features</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bias</span><span class="p">[</span><span class="s2">"grad"</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">out_features</span><span class="p">))</span>
 
 
     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">inp</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+        <span class="sd">"""</span>
 <span class="sd">        inp: [#_samples,in_fetures]</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">inp</span> <span class="o">=</span> <span class="n">inp</span>
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inp</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">bias</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inp</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">[</span><span class="s2">"value"</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">bias</span><span class="p">[</span><span class="s2">"value"</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="nf">backward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">grad</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+        <span class="sd">"""</span>
 <span class="sd">        grad : shape(#,out_feat) [same as the return of forward]</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">[</span><span class="s2">&quot;grad&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">grad</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">inp</span> <span class="p">)</span>  <span class="c1"># (out,in) = (out,#)(#,in)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">bias</span><span class="p">[</span><span class="s2">&quot;grad&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">grad</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>                 <span class="c1"># (out) = (out)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">[</span><span class="s2">"grad"</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">grad</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">inp</span> <span class="p">)</span>  <span class="c1"># (out,in) = (out,#)(#,in)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bias</span><span class="p">[</span><span class="s2">"grad"</span><span class="p">]</span> <span class="o">=</span> <span class="n">grad</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>                 <span class="c1"># (out) = (out)</span>
 
-        <span class="n">inp_grad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">grad</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">])</span>   <span class="c1"># (#,in) = (#,out)(out,in)</span>
+        <span class="n">inp_grad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">grad</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">[</span><span class="s2">"value"</span><span class="p">])</span>   <span class="c1"># (#,in) = (#,out)(out,in)</span>
 
         <span class="k">return</span> <span class="n">inp_grad</span>
 </pre></div>
@@ -314,9 +393,13 @@ $$</p>
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Relu-Activation">Relu Activation<a class="anchor-link" href="#Relu-Activation"> </a></h1><p><strong>forward pass</strong></p>
+<h1 id="Relu-Activation">
+<a class="anchor" href="#Relu-Activation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Relu Activation<a class="anchor-link" href="#Relu-Activation"> </a>
+</h1>
+<p><strong>forward pass</strong></p>
 $$
 R(x)=\max (0, x)
 $$<p><strong>backward pass</strong></p>
@@ -344,9 +427,9 @@ $$</p>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inp</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span>
     
     <span class="k">def</span> <span class="nf">backward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">grad</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+        <span class="sd">"""</span>
 <span class="sd">        grad : [same as the inp]</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">inp_grad</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inp</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span><span class="o">*</span><span class="n">grad</span>
         <span class="k">return</span> <span class="n">inp_grad</span> 
 </pre></div>
@@ -358,9 +441,13 @@ $$</p>
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Loss-function">Loss function<a class="anchor-link" href="#Loss-function"> </a></h1><p>We will use Cross Entropy as our loss function as we are dealing with multi-class classification problem</p>
+<h1 id="Loss-function">
+<a class="anchor" href="#Loss-function" aria-hidden="true"><span class="octicon octicon-link"></span></a>Loss function<a class="anchor-link" href="#Loss-function"> </a>
+</h1>
+<p>We will use Cross Entropy as our loss function as we are dealing with multi-class classification problem</p>
 $$
 L=-\frac{1}{m} \sum_{i=1}^{m} y_{i} \cdot \log \left(\hat{y}_{i}\right)
 $$
@@ -384,10 +471,10 @@ $$
         <span class="k">return</span> <span class="n">exps</span><span class="o">/</span><span class="n">exps</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">pred</span><span class="p">,</span><span class="n">target</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+        <span class="sd">"""</span>
 <span class="sd">        pred: (#,num_target)</span>
 <span class="sd">        target: (#,1)</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">m</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="c1"># take softmax along col</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pred</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Softmax</span><span class="p">(</span><span class="n">pred</span><span class="p">)</span>
@@ -398,9 +485,9 @@ $$
         <span class="k">return</span> <span class="n">loss</span>
 
     <span class="k">def</span> <span class="nf">backward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">grad</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+        <span class="sd">"""</span>
 <span class="sd">        grad : [same as the inp]</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">m</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="c1"># take softmax along col</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">grad</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pred</span>
@@ -416,9 +503,13 @@ $$
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Model-Class">Model Class<a class="anchor-link" href="#Model-Class"> </a></h1><p>We will also create a model class that will wrap our training and testing logic. This is so that we have a clean api to work with inside our training loop</p>
+<h1 id="Model-Class">
+<a class="anchor" href="#Model-Class" aria-hidden="true"><span class="octicon octicon-link"></span></a>Model Class<a class="anchor-link" href="#Model-Class"> </a>
+</h1>
+<p>We will also create a model class that will wrap our training and testing logic. This is so that we have a clean api to work with inside our training loop</p>
 <p><code>fit</code> : To train the network</p>
 <p><code>evaluate</code>: To evaulate</p>
 
@@ -453,8 +544,8 @@ $$
         <span class="c1"># update weights</span>
         <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">:</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="n">Linear</span><span class="p">):</span>
-                <span class="n">l</span><span class="o">.</span><span class="n">weight</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span> <span class="o">-=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lr</span><span class="o">*</span><span class="n">l</span><span class="o">.</span><span class="n">weight</span><span class="p">[</span><span class="s2">&quot;grad&quot;</span><span class="p">]</span>
-                <span class="n">l</span><span class="o">.</span><span class="n">bias</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span> <span class="o">-=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lr</span><span class="o">*</span><span class="n">l</span><span class="o">.</span><span class="n">bias</span><span class="p">[</span><span class="s2">&quot;grad&quot;</span><span class="p">]</span>
+                <span class="n">l</span><span class="o">.</span><span class="n">weight</span><span class="p">[</span><span class="s2">"value"</span><span class="p">]</span> <span class="o">-=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lr</span><span class="o">*</span><span class="n">l</span><span class="o">.</span><span class="n">weight</span><span class="p">[</span><span class="s2">"grad"</span><span class="p">]</span>
+                <span class="n">l</span><span class="o">.</span><span class="n">bias</span><span class="p">[</span><span class="s2">"value"</span><span class="p">]</span> <span class="o">-=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lr</span><span class="o">*</span><span class="n">l</span><span class="o">.</span><span class="n">bias</span><span class="p">[</span><span class="s2">"grad"</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">loss</span>
 
     <span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
@@ -469,9 +560,13 @@ $$
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Score-function/metric">Score function/metric<a class="anchor-link" href="#Score-function/metric"> </a></h1><p>We will use Accuracy as out Score function to see how well our model performed on our data.</p>
+<h1 id="Score-function/metric">
+<a class="anchor" href="#Score-function/metric" aria-hidden="true"><span class="octicon octicon-link"></span></a>Score function/metric<a class="anchor-link" href="#Score-function/metric"> </a>
+</h1>
+<p>We will use Accuracy as out Score function to see how well our model performed on our data.</p>
 
 </div>
 </div>
@@ -496,9 +591,13 @@ $$
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Training-Loop">Training Loop<a class="anchor-link" href="#Training-Loop"> </a></h1><p><strong>Model</strong></p>
+<h1 id="Training-Loop">
+<a class="anchor" href="#Training-Loop" aria-hidden="true"><span class="octicon octicon-link"></span></a>Training Loop<a class="anchor-link" href="#Training-Loop"> </a>
+</h1>
+<p><strong>Model</strong></p>
 <ol>
 <li>Linear(4,100)</li>
 <li>Relu</li>
@@ -534,7 +633,7 @@ $$
     
     <span class="c1"># print Loss and accuracy every 50 epochs</span>
     <span class="k">if</span> <span class="n">i</span><span class="o">%</span><span class="k">50</span>==0:
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Loss at epoch </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">  :</span><span class="si">{</span><span class="n">loss</span><span class="si">}</span><span class="s2">, accuracy: </span><span class="si">{</span><span class="n">accuracy</span><span class="p">(</span><span class="n">pred_logits</span><span class="p">,</span><span class="n">train_y</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Loss at epoch </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">  :</span><span class="si">{</span><span class="n">loss</span><span class="si">}</span><span class="s2">, accuracy: </span><span class="si">{</span><span class="n">accuracy</span><span class="p">(</span><span class="n">pred_logits</span><span class="p">,</span><span class="n">train_y</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -567,9 +666,12 @@ Loss at epoch 500  :0.21635705475306402, accuracy: 0.9714285714285714
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Evaluation-on-test-set">Evaluation on test set<a class="anchor-link" href="#Evaluation-on-test-set"> </a></h1>
+<h1 id="Evaluation-on-test-set">
+<a class="anchor" href="#Evaluation-on-test-set" aria-hidden="true"><span class="octicon octicon-link"></span></a>Evaluation on test set<a class="anchor-link" href="#Evaluation-on-test-set"> </a>
+</h1>
 </div>
 </div>
 </div>
@@ -581,7 +683,7 @@ Loss at epoch 500  :0.21635705475306402, accuracy: 0.9714285714285714
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">pred</span> <span class="o">=</span> <span class="n">my_model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">test_X</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Accuracy for the test set: </span><span class="si">{</span><span class="n">accuracy</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span><span class="n">test_y</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Accuracy for the test set: </span><span class="si">{</span><span class="n">accuracy</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span><span class="n">test_y</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -609,7 +711,15 @@ Loss at epoch 500  :0.21635705475306402, accuracy: 0.9714285714285714
 
 
 
-  </div><a class="u-url" href="/portfolio/2021/03/03/multi-class-classification.html" hidden></a>
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="isbhargav/portfolio"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/portfolio/jupyter/neural-network/numpy/2021/01/18/multi-class-classification.html" hidden></a>
 </article>
       </div>
     </main><footer class="site-footer h-card">
