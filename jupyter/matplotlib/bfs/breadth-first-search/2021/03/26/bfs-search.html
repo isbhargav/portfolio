@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Building a State Space Maze Search in Python : BFS | AI Portforlio</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Building a State Space Maze Search in Python : BFS" />
+<meta name="author" content="Bhargav Lad" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Building a State Space Maze Search in Python using breadth first search and visualizing the search using matplotlib" />
+<meta property="og:description" content="Building a State Space Maze Search in Python using breadth first search and visualizing the search using matplotlib" />
+<link rel="canonical" href="https://isbhargav.github.io/portfolio/jupyter/matplotlib/bfs/breadth-first-search/2021/03/26/bfs-search.html" />
+<meta property="og:url" content="https://isbhargav.github.io/portfolio/jupyter/matplotlib/bfs/breadth-first-search/2021/03/26/bfs-search.html" />
+<meta property="og:site_name" content="AI Portforlio" />
+<meta property="og:image" content="https://isbhargav.github.io/portfolio/images/maze.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-03-26T00:00:00-05:00" />
+<script type="application/ld+json">
+{"url":"https://isbhargav.github.io/portfolio/jupyter/matplotlib/bfs/breadth-first-search/2021/03/26/bfs-search.html","@type":"BlogPosting","headline":"Building a State Space Maze Search in Python : BFS","dateModified":"2021-03-26T00:00:00-05:00","datePublished":"2021-03-26T00:00:00-05:00","image":"https://isbhargav.github.io/portfolio/images/maze.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"https://isbhargav.github.io/portfolio/jupyter/matplotlib/bfs/breadth-first-search/2021/03/26/bfs-search.html"},"author":{"@type":"Person","name":"Bhargav Lad"},"description":"Building a State Space Maze Search in Python using breadth first search and visualizing the search using matplotlib","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/portfolio/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://isbhargav.github.io/portfolio/feed.xml" title="AI Portforlio" /><link rel="shortcut icon" type="image/x-icon" href="/portfolio/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/portfolio/">AI Portforlio</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/portfolio/about/">About Me</a><a class="page-link" href="/portfolio/search/">Search</a><a class="page-link" href="/portfolio/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline"> Building a State Space Maze Search in Python : BFS</h1><p class="page-description"> Building a State Space Maze Search in Python using breadth first search and visualizing the search using matplotlib</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-03-26T00:00:00-05:00" itemprop="datePublished">
+        Mar 26, 2021
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Bhargav Lad</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      3 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/portfolio/categories/#jupyter">jupyter</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/portfolio/categories/#matplotlib">matplotlib</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/portfolio/categories/#BFS">BFS</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/portfolio/categories/#Breadth-first-search">Breadth-first-search</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/isbhargav/portfolio/tree/master/_notebooks/2020-03-55-bfs-search.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/portfolio/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/isbhargav/portfolio/master?filepath=_notebooks%2F2020-03-55-bfs-search.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/portfolio/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/isbhargav/portfolio/blob/master/_notebooks/2020-03-55-bfs-search.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/portfolio/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#Psuedo-Code-of-BFS">Psuedo Code of BFS </a></li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2020-03-55-bfs-search.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In this notebook we will use breath first search(BFS) to find solution for the given Maze.
+We will start by importing the libraries required for the code.</p>
+<ul>
+<li>
+<code>clear_output</code> -  used to clear cell output</li>
+<li>
+<code>matplotlib.pyplot</code> - use to plot the maze path</li>
+<li>
+<code>%matplotlib inline</code> - to properly format matplotlib output inside jupyter notebook</li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">clear_output</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We will start by reading the maze file and reading it into python list with preprocessing</p>
+<p>here we will substitue % and . with number so that matplotlib can correcly render the maze</p>
+<ul>
+<li>
+<code>%</code> is substituted as <code>0</code>
+</li>
+<li>
+<code>` is substituted as</code>2`</li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>cat BigMaze.txt
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">file_name</span> <span class="o">=</span> <span class="s2">"BigMaze.txt"</span>
+<span class="n">maze</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">start</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">stop</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
+        <span class="n">row</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">j</span><span class="p">,</span><span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">line</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">c</span><span class="o">==</span><span class="s1">'P'</span><span class="p">:</span>
+                <span class="n">start</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>  <span class="c1"># start</span>
+                <span class="n">row</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">c</span><span class="o">==</span><span class="s1">'.'</span><span class="p">:</span>
+                <span class="n">stop</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>  <span class="c1"># stop</span>
+                <span class="n">row</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">c</span> <span class="o">==</span> <span class="s1">'%'</span><span class="p">:</span>
+                <span class="n">row</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1">#  % are 0s</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">row</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c1">#  spaces are 1s</span>
+        <span class="n">maze</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+
+<span class="n">ROW</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">maze</span><span class="p">)</span>
+<span class="n">COL</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">maze</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>   
+<span class="n">ax</span><span class="o">.</span><span class="n">pcolor</span><span class="p">(</span><span class="n">maze</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span> <span class="c1"># remove the tick marks by setting to an empty list</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span> <span class="c1"># remove the tick marks by setting to an empty list</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">'equal'</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">invert_yaxis</span><span class="p">()</span> <span class="c1">#invert the y-axis so the first row of data is at the top </span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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%0A">
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">copy</span>
+<span class="n">copy_maze</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">maze</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ROW</span><span class="p">,</span><span class="n">COL</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(37, 37)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Psuedo-Code-of-BFS">
+<a class="anchor" href="#Psuedo-Code-of-BFS" aria-hidden="true"><span class="octicon octicon-link"></span></a>Psuedo Code of BFS<a class="anchor-link" href="#Psuedo-Code-of-BFS"> </a>
+</h1>
+<pre><code>      BFS (G, s)                   //Where G is the graph and s is the source node
+      let Q be queue.
+      Q.enqueue( s ) //Inserting s in queue until all its neighbour vertices are marked.
+
+      mark s as visited.
+      while ( Q is not empty)
+           //Removing that vertex from queue,whose neighbour will be visited now
+           v  =  Q.dequeue( )
+
+          //processing all the neighbours of v  
+          for all neighbours w of v in Graph G
+               if w is not visited 
+                        Q.enqueue( w )             //Stores w in Q to further visit its neighbour
+                        mark w as visited.</code></pre>
+<p>source: <a href="https://www.hackerearth.com/practice/algorithms/graphs/breadth-first-search/tutorial/">https://www.hackerearth.com/practice/algorithms/graphs/breadth-first-search/tutorial/</a></p>
+<p>Here we will use deque datastructure to model queue for out BFS search.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
+<span class="n">SZ</span><span class="o">=</span><span class="mi">7</span>
+
+<span class="k">def</span> <span class="nf">BFS</span><span class="p">(</span><span class="n">maze</span><span class="p">,</span><span class="n">start</span><span class="p">,</span><span class="n">stop</span><span class="p">,</span><span class="n">WALL</span><span class="p">):</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">deque</span><span class="p">()</span>  <span class="c1"># queue of the nodes</span>
+    <span class="n">visited</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span> <span class="c1"># visited set so that we do not visist them again</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span> <span class="c1"># contains parent of each cell from which it is visited</span>
+    
+    <span class="n">q</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>  <span class="c1"># add start to the queue</span>
+    <span class="n">visited</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">start</span><span class="p">)</span> <span class="c1"># mark start as visited</span>
+    <span class="n">parent</span><span class="p">[</span><span class="n">start</span><span class="p">]</span><span class="o">=</span><span class="n">start</span>  <span class="c1"># parent of start is start as it the first node</span>
+
+
+    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">q</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+        
+        <span class="c1"># pop the first element of queue</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">popleft</span><span class="p">()</span>
+        
+        <span class="c1"># if it is the destination then we can break out of loop</span>
+        <span class="k">if</span> <span class="n">f</span><span class="o">==</span><span class="n">stop</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"Found Path"</span><span class="p">)</span>
+            <span class="k">break</span><span class="p">;</span>
+            
+
+        <span class="c1"># get all the 4 neighbours of f</span>
+        <span class="n">top</span> <span class="o">=</span> <span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">f</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">bottom</span> <span class="o">=</span> <span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">f</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">left</span> <span class="o">=</span> <span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mi">0</span><span class="p">,</span><span class="n">f</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">right</span> <span class="o">=</span> <span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mi">0</span><span class="p">,</span><span class="n">f</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># add all the valid neighbours that are not yet visited to the queue</span>
+        <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="p">[</span><span class="n">top</span><span class="p">,</span><span class="n">bottom</span><span class="p">,</span><span class="n">left</span><span class="p">,</span><span class="n">right</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="o">-</span><span class="mi">1</span><span class="o">&lt;</span><span class="n">pos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&lt;</span><span class="n">ROW</span> <span class="ow">and</span> <span class="o">-</span><span class="mi">1</span><span class="o">&lt;</span><span class="n">pos</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">&lt;</span><span class="n">COL</span> <span class="ow">and</span> <span class="n">maze</span><span class="p">[</span><span class="n">pos</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">pos</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span><span class="o">!=</span><span class="n">WALL</span> <span class="ow">and</span> <span class="n">pos</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">visited</span><span class="p">:</span>
+                <span class="n">q</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
+                <span class="n">visited</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
+                <span class="n">parent</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span><span class="o">=</span><span class="n">f</span>
+                
+                <span class="c1"># Code to display visited cell</span>
+                <span class="n">clear_output</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                <span class="n">copy_maze</span><span class="p">[</span><span class="n">pos</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">pos</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+                <span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="n">SZ</span><span class="p">,</span><span class="n">SZ</span><span class="p">))</span> 
+                <span class="n">ax</span><span class="o">.</span><span class="n">pcolor</span><span class="p">(</span><span class="n">copy_maze</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span> <span class="c1"># remove the tick marks by setting to an empty list</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span> <span class="c1"># remove the tick marks by setting to an empty list</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">'equal'</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">invert_yaxis</span><span class="p">()</span> <span class="c1">#invert the y-axis so the first row of data is at the top </span>
+                
+                <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+                
+
+    <span class="c1"># code to get the actual path</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">stop</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="p">]</span>
+    <span class="k">while</span> <span class="n">parent</span><span class="p">[</span><span class="n">p</span><span class="p">]</span><span class="o">!=</span><span class="n">p</span><span class="p">:</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">parent</span><span class="p">[</span><span class="n">p</span><span class="p">]</span>
+        <span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+        
+    <span class="k">return</span> <span class="n">path</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bfs_path</span> <span class="o">=</span> <span class="n">BFS</span><span class="p">(</span><span class="n">maze</span><span class="p">,</span><span class="n">start</span><span class="p">,</span><span class="n">stop</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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%0A">
+</div>
+
+</div>
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Found Path
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">bfs_path</span><span class="p">:</span>
+    <span class="n">maze</span><span class="p">[</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span><span class="o">=</span><span class="mi">1</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">SZ</span><span class="o">=</span><span class="mi">15</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="n">SZ</span><span class="p">,</span><span class="n">SZ</span><span class="p">))</span>   
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">pcolor</span><span class="p">(</span><span class="n">copy_maze</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span> <span class="c1"># remove the tick marks by setting to an empty list</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span> <span class="c1"># remove the tick marks by setting to an empty list</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">'equal'</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">invert_yaxis</span><span class="p">()</span> <span class="c1">#invert the y-axis so the first row of data is at the top </span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"All the Visited cells"</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">pcolor</span><span class="p">(</span><span class="n">maze</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span> <span class="c1"># remove the tick marks by setting to an empty list</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span> <span class="c1"># remove the tick marks by setting to an empty list</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">'equal'</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">invert_yaxis</span><span class="p">()</span> <span class="c1">#invert the y-axis so the first row of data is at the top </span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Final BFS Path"</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Text(0.5, 1.0, 'Final BFS Path')</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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%0A">
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="isbhargav/portfolio"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/portfolio/jupyter/matplotlib/bfs/breadth-first-search/2021/03/26/bfs-search.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/portfolio/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/portfolio/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/portfolio/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>Portfolio Website</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/isbhargav.github.com" title="isbhargav.github.com"><svg class="svg-icon grey"><use xlink:href="/portfolio/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/twitter.com%2Fbhargavlad" title="twitter.com/bhargavlad"><svg class="svg-icon grey"><use xlink:href="/portfolio/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
